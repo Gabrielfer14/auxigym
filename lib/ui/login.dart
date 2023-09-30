@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -13,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: const Text('Login'),
       ),
       body: Center(
         child: Padding(
@@ -23,14 +25,14 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               TextField(
                 controller: usernameController,
-                decoration: InputDecoration(labelText: 'Nome de Usuário'),
+                decoration: const InputDecoration(labelText: 'Nome de Usuário'),
               ),
               TextField(
                 controller: passwordController,
                 obscureText: true,
-                decoration: InputDecoration(labelText: 'Senha'),
+                decoration: const InputDecoration(labelText: 'Senha'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   // Implemente a lógica de autenticação aqui
@@ -44,13 +46,13 @@ class _LoginPageState extends State<LoginPage> {
                   } else {
                     // Exiba uma mensagem de erro
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text('Nome de usuário ou senha incorretos.'),
                       ),
                     );
                   }
                 },
-                child: Text('Login'),
+                child: const Text('Login'),
               ),
             ],
           ),

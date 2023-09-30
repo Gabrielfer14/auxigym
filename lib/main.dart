@@ -7,8 +7,8 @@ void main() {
     title: "Bem-vindo ao AuxiGym",
     initialRoute: '/login', // Defina a rota inicial como a tela de login
     routes: {
-      '/login': (context) => LoginPage(), // Rota para a tela de login
-      '/home': (context) => Home(), // Rota para a tela inicial
+      '/login': (context) => const LoginPage(), // Rota para a tela de login
+      '/home': (context) => const Home(), // Rota para a tela inicial
     },
   ));
 }
