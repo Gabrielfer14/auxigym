@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auxigym/ui/home.dart';
-import 'package:auxigym/ui/login.dart'; // Importe a classe da tela de login
+import 'package:auxigym/ui/login.dart';
+import 'package:auxigym/ui/registro.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -9,6 +10,7 @@ void main() {
     routes: {
       '/login': (context) => const LoginPage(), // Rota para a tela de login
       '/home': (context) => const Home(), // Rota para a tela inicial
+      '/register': (context) => const RegisterPage(),
     },
   ));
 }

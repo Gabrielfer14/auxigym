@@ -1,3 +1,4 @@
+import 'package:auxigym/database/db.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -5,6 +6,20 @@ class LoginPage extends StatefulWidget {
 
   @override
   _LoginPageState createState() => _LoginPageState();
+}
+
+Future<bool> checkCredentials(String username, String password) async {
+  final db = await DatabaseHelper.instance.database;
+  final result = await db.query(
+    'usuario',
+    where: 'nome_usuario = ? AND senha_usuario = ?',
+    whereArgs: [
+      username,
+      password
+    ],
+  );
+
+  return result.isNotEmpty; // Retorna verdadeiro se encontrar um usuário com as credenciais fornecidas.
 }
 
 class _LoginPageState extends State<LoginPage> {
@@ -34,13 +49,13 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  // Implemente a lógica de autenticação aqui
-                  // Verifique se os valores inseridos coincidem com as credenciais válidas
+                onPressed: () async {
                   String username = usernameController.text;
                   String password = passwordController.text;
 
-                  if (username == 'teste' && password == 'teste') {
+                  bool isAuthenticated = await checkCredentials(username, password);
+
+                  if (isAuthenticated) {
                     // Autenticação bem-sucedida, navegue para a tela principal
                     Navigator.pushReplacementNamed(context, '/home');
                   } else {
@@ -53,6 +68,13 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 },
                 child: const Text('Login'),
+              ),
+              TextButton(
+                onPressed: () {
+                  // Navegue para a página de registro quando o botão "Registrar" for pressionado.
+                  Navigator.pushNamed(context, '/register');
+                },
+                child: const Text('Registrar'),
               ),
             ],
           ),
