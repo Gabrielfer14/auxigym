@@ -1,25 +1,13 @@
+import 'package:auxigym/classes/userProvider.dart';
 import 'package:auxigym/database/db.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
-}
-
-Future<bool> checkCredentials(String username, String password) async {
-  final db = await DatabaseHelper.instance.database;
-  final result = await db.query(
-    'usuario',
-    where: 'nome_usuario = ? AND senha_usuario = ?',
-    whereArgs: [
-      username,
-      password
-    ],
-  );
-
-  return result.isNotEmpty; // Retorna verdadeiro se encontrar um usuário com as credenciais fornecidas.
 }
 
 class _LoginPageState extends State<LoginPage> {
@@ -53,10 +41,15 @@ class _LoginPageState extends State<LoginPage> {
                   String username = usernameController.text;
                   String password = passwordController.text;
 
-                  bool isAuthenticated = await checkCredentials(username, password);
+                  bool isAuthenticated = await DatabaseHelper.instance.checkCredentials(username, password);
 
                   if (isAuthenticated) {
-                    // Autenticação bem-sucedida, navegue para a tela principal
+                    // Autenticação bem-sucedida, defina o ID do usuário usando o UserProvider
+                    final userProvider = Provider.of<UserProvider>(context, listen: false);
+                    final userId = await DatabaseHelper.instance.getUserId(username);
+                    userProvider.setUser(userId!);
+
+                    // Navegue para a tela principal
                     Navigator.pushReplacementNamed(context, '/home');
                   } else {
                     // Exiba uma mensagem de erro

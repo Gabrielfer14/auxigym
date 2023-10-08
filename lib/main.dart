@@ -1,16 +1,34 @@
+import 'package:auxigym/classes/userProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:auxigym/ui/ficha.dart';
 import 'package:auxigym/ui/home.dart';
 import 'package:auxigym/ui/login.dart';
 import 'package:auxigym/ui/registro.dart';
 
 void main() {
-  runApp(MaterialApp(
-    title: "Bem-vindo ao AuxiGym",
-    initialRoute: '/login', // Defina a rota inicial como a tela de login
-    routes: {
-      '/login': (context) => const LoginPage(), // Rota para a tela de login
-      '/home': (context) => const Home(), // Rota para a tela inicial
-      '/register': (context) => const RegisterPage(),
-    },
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+      ],
+      child: MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Bem-vindo ao AuxiGym",
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => const LoginPage(),
+        '/home': (context) => const Home(),
+        '/register': (context) => const RegisterPage(),
+        '/ficha': (context) => const FichaPage(),
+      },
+    );
+  }
 }
