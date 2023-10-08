@@ -1,0 +1,10 @@
+C:/imd/dmoveis/auxigym/build/windows/runner/Debug/data/icudtl.dat
+C:/imd/dmoveis/auxigym/build/windows/runner/Debug/flutter_windows.dll
+C:/imd/dmoveis/auxigym/build/windows/runner/Debug/data/flutter_assets/AssetManifest.bin
+C:/imd/dmoveis/auxigym/build/windows/runner/Debug/data/flutter_assets/AssetManifest.json
+C:/imd/dmoveis/auxigym/build/windows/runner/Debug/data/flutter_assets/FontManifest.json
+C:/imd/dmoveis/auxigym/build/windows/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+C:/imd/dmoveis/auxigym/build/windows/runner/Debug/data/flutter_assets/kernel_blob.bin
+C:/imd/dmoveis/auxigym/build/windows/runner/Debug/data/flutter_assets/NOTICES.Z
+C:/imd/dmoveis/auxigym/build/windows/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+C:/imd/dmoveis/auxigym/build/windows/runner/Debug/data/flutter_assets/shaders/ink_sparkle.frag

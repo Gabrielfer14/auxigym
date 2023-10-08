@@ -1,0 +1,10 @@
+^C:\IMD\DMOVEIS\AUXIGYM\BUILD\WINDOWS\CMAKEFILES\569A021817BBDBD464EE508B0C5DA73F\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/imd/dmoveis/auxigym/windows -BC:/imd/dmoveis/auxigym/build/windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/imd/dmoveis/auxigym/build/windows/auxigym.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
