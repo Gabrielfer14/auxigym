@@ -60,21 +60,27 @@ class _RegisterPageState extends State<RegisterPage> {
                       return;
                     }
 
-                    bool isExistingUser = await checkExistingUser(username, email);
+                    bool isExistingUser = await DatabaseHelper.instance.checkExistingUser(username, email);
 
                     if (isExistingUser) {
                       // Exib uma mensagem de erro se o usuário já estiver registrado.
                       _showSnackBar(context, 'Usuário já registrado.');
                     } else {
                       // Realiza o registro, inserindo os dados no banco de dados
-                      await insertUser(username, password, age, email);
+                      await DatabaseHelper.instance.insertUser(username, password, age, email);
 
-                      // Exibe uma mensagem de sucesso
-                      _showSnackBar(context, 'Registro bem-sucedido!');
+                      // Obtém o ID do usuário recém-criado
+                      int? userId = await DatabaseHelper.instance.getUserId(username);
 
-                      // Após o registro bem-sucedido, você pode navegar de volta para a tela de login ou
-                      // para a tela inicial do aplicativo.
-                      Navigator.pushReplacementNamed(context, '/login');
+                      if (userId != null) {
+                        // Exibe uma mensagem de sucesso
+                        _showSnackBar(context, 'Registro bem-sucedido!');
+
+                        Navigator.pushReplacementNamed(context, '/login');
+                      } else {
+                        // Caso não seja possível obter o ID do usuário, exiba uma mensagem de erro
+                        _showSnackBar(context, 'Erro ao criar usuario.');
+                      }
                     }
                   },
                   child: const Text('Registrar'),
